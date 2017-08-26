@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chat App</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+  <style>
+  body{
+    text-align: center;
+  }
+    button{
+      width:150px;
+      font-size:900%;
+      font-family:monospace;
+
+    }
+  </style>
+</head>
+<body>
+  <h1>Tic-Tac-Tournament</h1>
+
+  <div id="tictactou-countainer">
+    <div class="tictactou-row">
+      <button onclick="buttonClick(this)" id="1">&nbsp;</button>
+      <button onclick="buttonClick(this)" id="2">&nbsp;</button>
+      <button onclick="buttonClick(this)" id="3">&nbsp;</button>
+    </div>
+    <div class="tictactou-row">
+      <button onclick="buttonClick(this)" id="4">&nbsp;</button>
+      <button onclick="buttonClick(this)" id="5">&nbsp;</button>
+      <button onclick="buttonClick(this)" id="6">&nbsp;</button>
+    </div>
+    <div class="tictactou-row">
+      <button onclick="buttonClick(this)" id="7">&nbsp;</button>
+      <button onclick="buttonClick(this)" id="8">&nbsp;</button>
+      <button onclick="buttonClick(this)" id="9">&nbsp;</button>
+    </div>
+  </div>
+
+  <script>
+    var socket = io("{{uri}}");
+
+
+    socket.on('connect', function(){
+      console.log("Yep");
+    });
+
+    function buttonClick(button){
+      const button_id = button.id
+
+      socket.emit("buttonClicked", button_id);
+    }
+
+    socket.on("addX", (id) => {
+      console.log(id);
+      document.getElementById(id).innerHTML = "X";
+    });
+
+  </script>
+</body>
+</html>

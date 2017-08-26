@@ -17,8 +17,10 @@
   },
   "homepage": "https://github.com/Matthcw/tic_tac_tournament#readme",
   "dependencies": {
+    "handlebars": "^4.0.10",
     "hapi": "^16.5.2",
     "inert": "^4.2.1",
-    "socket.io": "^2.0.3"
+    "socket.io": "^2.0.3",
+    "vision": "^4.1.1"
   }
 }
