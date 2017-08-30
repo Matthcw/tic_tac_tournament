@@ -36,14 +36,15 @@
       <button onclick="buttonClick(this)" id="9">&nbsp;</button>
     </div>
   </div>
+  <p id="text"></p>
+  <div id="userlist">
+    <ul>
+    </ul>
+  </div>
 
   <script>
     var socket = io("{{uri}}");
 
-
-    socket.on('connect', function(){
-      console.log("Yep");
-    });
 
     function buttonClick(button){
       const button_id = button.id
@@ -51,10 +52,37 @@
       socket.emit("buttonClicked", button_id);
     }
 
-    socket.on("addX", (id) => {
-      console.log(id);
-      document.getElementById(id).innerHTML = "X";
+    socket.on('connect', function(){
+      console.log("Yep");
     });
+
+    socket.on('playerWins', (player) => {
+      document.getElementById("text").innerHTML = player + " Wins!";
+      resetGame();
+    });
+
+    socket.on('gameDraw', () => {
+      document.getElementById("text").innerHTML = "Draw!";
+      resetGame();
+    });
+
+    socket.on('setState', (state) => {
+      console.log(state);
+      for(var i=0;i < 9;i++){
+        if(state[i].length > 0){
+          document.getElementById(i+1).innerHTML = state[i];
+        }
+      }
+    });
+
+    function resetGame(){
+      setTimeout(() => {
+        for(var i=0;i < 9;i++){
+          document.getElementById(i+1).innerHTML = "&nbsp;";
+        }
+        document.getElementById("text").innerHTML = "";
+      },3000);
+    }
 
   </script>
 </body>

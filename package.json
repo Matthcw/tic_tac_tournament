@@ -4,7 +4,8 @@
   "description": "socket.io, node.js, hapi",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -17,7 +18,8 @@
   },
   "homepage": "https://github.com/Matthcw/tic_tac_tournament#readme",
   "dependencies": {
-    "handlebars": "^4.0.10",
+    "express": "^4.15.4",
+    "express-handlebars": "^3.0.0",
     "hapi": "^16.5.2",
     "inert": "^4.2.1",
     "socket.io": "^2.0.3",
