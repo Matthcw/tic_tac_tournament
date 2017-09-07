@@ -21,7 +21,7 @@ app.set('view engine', 'hbs');
 
 app.set('port', (process.env.PORT || 3000));
 
-server.listen(3000);
+server.listen(app.get('port'));
 
 app.get('/', (req, res) => {
   const uri = req.protocol + '://' + req.get('host') + req.originalUrl;
